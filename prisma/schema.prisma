@@ -1,0 +1,48 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Task {
+  id          Int                @id @default(autoincrement())
+  taskName    String
+  startDate   DateTime
+  endDate     DateTime
+  duration    Int
+  progress    Int                @default(0)
+  parentId    Int?
+  isRecurring Boolean            @default(false)
+  isMilestone Boolean            @default(false)
+  predecessor String?
+  uniqueID    String             @unique @default(uuid())
+  notes       String?
+  
+  // Relações
+  parent        Task?             @relation("ParentChildren", fields: [parentId], references: [id])
+  children      Task[]            @relation("ParentChildren")
+  dependencies  TaskDependency[]  @relation("Dependencies")
+  predecessorDependencies TaskDependency[] @relation("Predecessors") // Relação inversa
+}
+
+model TaskDependency {
+  id             Int     @id @default(autoincrement())
+  taskId         Int
+  predecessorId  Int
+  type           String
+
+  task         Task    @relation("Dependencies", fields: [taskId], references: [id])
+  predecessor  Task    @relation("Predecessors", fields: [predecessorId], references: [id])
+
+  @@index([taskId])
+  @@index([predecessorId])
+}

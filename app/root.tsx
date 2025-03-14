@@ -1,3 +1,6 @@
+//import { registerLicense } from '@syncfusion/ej2-base';
+//registerLicense('Ngo9BigBOggjHTQxAR8/V1NDaF5cWWtCf1FpRmJGdld5fUVHYVZUTXxaS00DNHVRdkdnWH5ceXRcRmNfUUJ0VkE=');
+
 import {
   Links,
   Meta,
@@ -6,8 +9,6 @@ import {
   ScrollRestoration,
 } from "@remix-run/react";
 import type { LinksFunction } from "@remix-run/node";
-
-import "./tailwind.css";
 
 export const links: LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -22,9 +23,11 @@ export const links: LinksFunction = () => [
   },
 ];
 
+import "./tailwind.css";
+
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="pt-BR">
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
