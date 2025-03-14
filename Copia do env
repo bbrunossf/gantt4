@@ -1,0 +1,6 @@
+#DATABASE_URL="file:./gantt4.db?connection_limit=1"
+DATABASE_URL="file:./gantt4.db"
+SESSION_SECRET="187e87aca36cd378dfe993e5b282c57a
+
+#para licenciar usando o npx com o arquivo de texto com a licença:
+#npx syncfusion-license activate
