@@ -165,6 +165,7 @@ export default function GanttRoute() {
           allowAdding: true,
           allowEditing: true,
           allowDeleting: true,
+          showDeleteConfirmDialog: true,
           allowTaskbarEditing: true
         }}
 
